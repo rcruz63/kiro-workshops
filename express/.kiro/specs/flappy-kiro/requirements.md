@@ -16,6 +16,9 @@ Flappy Kiro is a retro, browser-based endless scroller game inspired by Flappy B
 - **Score**: The count of Pipe_Pairs the Ghost has successfully passed during the current play session.
 - **High_Score**: The greatest Score achieved across play sessions, persisted in browser local storage.
 - **Game_State**: The current mode of the Game, one of: Ready, Playing, or Game_Over.
+- **Cloud**: A decorative background element rendered within the Play_Field that drifts horizontally to suggest a moving sky and does not affect gameplay or collisions.
+- **Cloud_Opacity**: The rendering opacity applied to a Cloud, expressed as a percentage where 0% is fully transparent and 100% is fully opaque.
+- **Parallax_Scrolling**: A visual depth technique in which multiple Clouds drift horizontally at differing speeds, where Clouds intended to appear nearer move faster than Clouds intended to appear farther away.
 - **Flap_Sound**: The audio asset (`jump.wav`) played when a Flap occurs.
 - **Game_Over_Sound**: The audio asset (`game_over.wav`) played when the Game transitions to Game_Over.
 - **Local_Storage**: The browser persistence mechanism used to store the High_Score across sessions.
@@ -122,6 +125,9 @@ Flappy Kiro is a retro, browser-based endless scroller game inspired by Flappy B
 1. WHILE the Game is in the Ready, Playing, or Game_Over state, THE Game SHALL render the Ghost using the `ghosty.png` sprite asset.
 2. WHILE the Game is in the Ready, Playing, or Game_Over state, THE Game SHALL render the entire Play_Field background area in sky-blue.
 3. WHILE the Game is in the Ready, Playing, or Game_Over state, THE Game SHALL render between 2 and 6 cloud decorations within the Play_Field background.
-4. THE Game SHALL render each Pipe_Pair with a green upper segment and a green lower segment, each segment spanning the full horizontal width of the Pipe_Pair.
-5. WHILE the Game is in the Playing state, THE Game SHALL render frame updates at a target rate of 60 frames per second and SHALL sustain a measured rate of at least 30 frames per second.
-6. IF the `ghosty.png` sprite asset fails to load, THEN THE Game SHALL render the Ghost as a solid placeholder shape occupying the Ghost's bounding area and SHALL continue gameplay without interruption.
+4. WHILE the Game is in the Ready, Playing, or Game_Over state, THE Game SHALL render each Cloud at a Cloud_Opacity between 40% and 70% (inclusive) so that the sky-blue background remains partially visible through each Cloud.
+5. WHILE the Game is in the Ready, Playing, or Game_Over state, THE Game SHALL drift each Cloud horizontally toward the left edge of the Play_Field using Parallax_Scrolling, where each Cloud is assigned one of at least 2 distinct scroll speeds ranging from 10% to 40% of the Pipe_Pair scroll speed.
+6. WHERE at least 2 Clouds are rendered, THE Game SHALL assign differing scroll speeds to at least 2 of those Clouds such that the slower Cloud scroll speed is at most 60% of the faster Cloud scroll speed.
+7. THE Game SHALL render each Pipe_Pair with a green upper segment and a green lower segment, each segment spanning the full horizontal width of the Pipe_Pair.
+8. WHILE the Game is in the Playing state, THE Game SHALL render frame updates at a target rate of 60 frames per second and SHALL sustain a measured rate of at least 30 frames per second.
+9. IF the `ghosty.png` sprite asset fails to load, THEN THE Game SHALL render the Ghost as a solid placeholder shape occupying the Ghost's bounding area and SHALL continue gameplay without interruption.
