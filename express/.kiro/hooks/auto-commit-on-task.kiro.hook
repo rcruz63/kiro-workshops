@@ -1,0 +1,13 @@
+{
+  "enabled": true,
+  "name": "Auto-commit on task completion",
+  "description": "When an agent finishes a spec task, automatically stage all changes and create a local commit with a descriptive message based on the changes made. Never pushes to remote.",
+  "version": "1",
+  "when": {
+    "type": "postTaskExecution"
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "A task has just completed. Stage and commit the changes locally:\n\n1. Run `git status` and `git diff` (and `git diff --staged`) to review exactly what changed.\n2. Stage the relevant changed files. Prefer staging specific files over `git add .` to avoid committing unrelated changes. Flag any files that may contain secrets (e.g. .env, credentials) before staging them.\n3. Create a single local commit with a clear, descriptive message summarizing the changes made for this task (a concise subject line under ~70 chars, plus a short body if helpful).\n4. DO NOT push to any remote. Never run `git push` or create pull requests. Local commit only — pushing requires explicit approval from me.\n\nIf there are no changes to commit, do nothing."
+  }
+}
