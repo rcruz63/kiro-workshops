@@ -8,7 +8,7 @@ Tasks build incrementally: tooling and types first, then each pure core module w
 
 ## Tasks
 
-- [ ] 1. Set up project structure and tooling
+- [x] 1. Set up project structure and tooling
   - Initialize a Vite + TypeScript project (`package.json`, `tsconfig.json`, `vite.config.ts`)
   - Add and configure Vitest and fast-check as dev dependencies; add `test` (with `--run`) and `build` scripts
   - Create the source layout: `src/core/`, `src/adapters/`, `src/shell/`, and `src/core/__tests__/`
